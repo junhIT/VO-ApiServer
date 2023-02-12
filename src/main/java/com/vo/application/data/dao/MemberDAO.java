@@ -6,7 +6,7 @@ public interface MemberDAO {
 
 	MemberEntity registerMember(MemberEntity memberEntity);
 	
-	MemberEntity getMember(String id);
+	MemberEntity getMember(Integer mbNo);
 
-	
+	MemberEntity login(String id);
 }

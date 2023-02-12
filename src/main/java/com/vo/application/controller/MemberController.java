@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vo.application.common.dto.ApiResponse;
 import com.vo.application.data.dto.MemberDto;
 import com.vo.application.service.MemberService;
 
@@ -23,22 +24,30 @@ public class MemberController {
 	 * 회원가입
 	 */
 	@PostMapping("/registerUser")
-	public ResponseEntity<?> registerUser(@RequestBody MemberDto req) {
+	public ApiResponse<?> registerUser(@RequestBody MemberDto req) throws Exception {
 		
 		memberService.registerMember(req);
 		
-		return ResponseEntity.ok("success");
+		return ApiResponse.success(null);
 	}
 	
 	/**
 	 * 로그인
 	 */
 	@PostMapping("/login")
-	public ResponseEntity<?> getUser(@RequestBody MemberDto req) throws Exception {
+	public ApiResponse<?> login(@RequestBody MemberDto req) throws Exception {
 		
 		memberService.login(req);
 		
-		return ResponseEntity.ok("success");
+		return ApiResponse.success(null);
 	}
 	
+	/**
+	 * 회원 정보 조회
+	 */
+	@GetMapping("/getMember/{mbNo}")
+	public ApiResponse<?> getMember(@PathVariable(required = true) Integer mbNo) throws Exception {
+		
+		return ApiResponse.success(memberService.getMember(mbNo));
+	}
 }
