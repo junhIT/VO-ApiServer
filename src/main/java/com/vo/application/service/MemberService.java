@@ -1,10 +1,11 @@
 package com.vo.application.service;
 
 import com.vo.application.data.dto.MemberDto;
+import com.vo.application.data.dto.RegisterDto;
 
 public interface MemberService {
 
-	MemberDto registerMember(MemberDto req) throws Exception;
+	RegisterDto registerMember(RegisterDto req) throws Exception;
 
 	MemberDto login(MemberDto req) throws Exception;
 
