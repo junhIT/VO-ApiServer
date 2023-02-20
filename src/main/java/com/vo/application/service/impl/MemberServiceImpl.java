@@ -21,25 +21,27 @@ public class MemberServiceImpl implements MemberService{
 	/**
 	 * 회원가입 
 	 */
-	public RegisterDto registerMember(RegisterDto req) throws Exception {
+	public void registerMember(RegisterDto req) throws Exception {
 		
 		if( !req.getPassword().equals(req.getPasswordConfirm()) ) {
 			throw new Exception("비밀번호가 일치하지 않습니다.");
 		}
 		
-		MemberEntity resMember = memberDao.registerMember(req.toEntity());
+		if( memberDao.getMemberById(req.getId()) != null ) {
+			throw new Exception("이미 존재하는 ID입니다.");
+		}
 		
-		return req;
+		memberDao.registerMember(req.toEntity());
 	}
 
 	/**
 	 * 회원 로그인 
 	 */
-	public MemberDto login(MemberDto req) throws Exception {
+	public void login(MemberDto req) throws Exception {
 		
 		log.debug("login Start :: {}", req);
 		
-		MemberEntity entityRes = memberDao.login(req.getId());
+		MemberEntity entityRes = memberDao.getMemberById(req.getId());
 
 		// 조회된 데이터가 없을 경우
 		if(entityRes == null) {
@@ -50,8 +52,6 @@ public class MemberServiceImpl implements MemberService{
 		if( !entityRes.getPassword().equals(req.getPassword()) ) {
 			throw new Exception("비밀번호가 일치하지 않습니다.");
 		}
-
-		return req;
 	}
 	
 	/**

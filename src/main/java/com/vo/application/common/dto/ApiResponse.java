@@ -20,8 +20,19 @@ public class ApiResponse<T> {
 	private T data;
 	private String message;
 
+	// Api 성공 Response
 	public static <T> ApiResponse<T> success(T data) {
 		return new ApiResponse<>(SUCCESS_STATUS, SUCCESS_CODE, data, null);
+	}
+	
+	// Api 오류 Response
+	public static <T> ApiResponse<T> fail(String message) {
+		return new ApiResponse<>(FAIL_STATUS, FAIL_CODE, null, message);
+	}
+	
+	// Api 에러 Response
+	public static <T> ApiResponse<T> error(String message) {
+		return new ApiResponse<>(ERROR_STATUS, ERROR_CODE, null, message);
 	}
 	
 	private ApiResponse(String status, String statusCode, T data, String message) {

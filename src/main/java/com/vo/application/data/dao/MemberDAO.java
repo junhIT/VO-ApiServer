@@ -8,5 +8,5 @@ public interface MemberDAO {
 	
 	MemberEntity getMember(Integer mbNo);
 
-	MemberEntity login(String id);
+	MemberEntity getMemberById(String id);
 }

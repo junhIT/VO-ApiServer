@@ -13,6 +13,8 @@ import com.vo.application.data.dto.MemberDto;
 import com.vo.application.data.dto.RegisterDto;
 import com.vo.application.service.MemberService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/api/vo")
 public class MemberController {
@@ -25,8 +27,11 @@ public class MemberController {
 	 */
 	@PostMapping("/register")
 	public ApiResponse<?> registerMember(@RequestBody RegisterDto req) throws Exception {
-		
-		memberService.registerMember(req);
+		try {
+			memberService.registerMember(req);
+		} catch(Exception e) {
+			return ApiResponse.fail(e.getMessage());
+		}
 		
 		return ApiResponse.success(null);
 	}
@@ -36,8 +41,11 @@ public class MemberController {
 	 */
 	@PostMapping("/login")
 	public ApiResponse<?> login(@RequestBody MemberDto req) throws Exception {
-		
-		memberService.login(req);
+		try {
+			memberService.login(req);
+		} catch(Exception e) {
+			return ApiResponse.fail(e.getMessage());
+		}
 		
 		return ApiResponse.success(null);
 	}

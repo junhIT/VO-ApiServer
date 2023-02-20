@@ -26,12 +26,12 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public MemberEntity login(String id) {
-		return memberRepository.findById(id);
+	public MemberEntity getMember(Integer mbNo) {
+		return memberRepository.getReferenceById(mbNo);
 	}
 
 	@Override
-	public MemberEntity getMember(Integer mbNo) {
-		return memberRepository.getReferenceById(mbNo);
+	public MemberEntity getMemberById(String id) {
+		return memberRepository.findById(id);
 	}
 }
