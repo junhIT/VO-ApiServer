@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vo.application.common.dto.ApiResponse;
-import com.vo.application.data.dto.MemberDto;
-import com.vo.application.data.dto.RegisterDto;
+import com.vo.application.data.dto.MemberDTO;
+import com.vo.application.data.dto.MemberRegisterReqDTO;
 import com.vo.application.service.MemberService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/vo")
@@ -26,7 +24,7 @@ public class MemberController {
 	 * 회원가입
 	 */
 	@PostMapping("/register")
-	public ApiResponse<?> registerMember(@RequestBody RegisterDto req) throws Exception {
+	public ApiResponse<?> registerMember(@RequestBody MemberRegisterReqDTO req) throws Exception {
 		try {
 			memberService.registerMember(req);
 		} catch(Exception e) {
@@ -40,13 +38,13 @@ public class MemberController {
 	 * 로그인
 	 */
 	@PostMapping("/login")
-	public ApiResponse<?> login(@RequestBody MemberDto req) throws Exception {
+	public ApiResponse<?> login(@RequestBody MemberDTO req) throws Exception {
 		try {
 			memberService.login(req);
 		} catch(Exception e) {
 			return ApiResponse.fail(e.getMessage());
 		}
-		
+
 		return ApiResponse.success(null);
 	}
 	
@@ -55,7 +53,6 @@ public class MemberController {
 	 */
 	@GetMapping("/member/{mbNo}")
 	public ApiResponse<?> getMember(@PathVariable(required = true) Integer mbNo) throws Exception {
-		
 		return ApiResponse.success(memberService.getMember(mbNo));
 	}
 }

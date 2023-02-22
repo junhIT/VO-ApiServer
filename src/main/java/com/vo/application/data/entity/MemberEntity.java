@@ -14,12 +14,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
+@Table(name = "MB_TB")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "MB_TB")
+@Getter
+@Setter
 @Builder
 public class MemberEntity {
 	
@@ -29,6 +29,7 @@ public class MemberEntity {
 	
 	@Column(unique = true)
 	private String id;	// 아이디
+	
 	private String password;	// 비밀번호
 	private String name;	// 이름
 	private String careerStartDate;	// 경력시작일자

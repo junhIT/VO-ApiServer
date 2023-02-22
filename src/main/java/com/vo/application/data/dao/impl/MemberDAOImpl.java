@@ -15,6 +15,9 @@ public class MemberDAOImpl implements MemberDAO{
 	@Autowired
 	MemberRepository memberRepository;
 
+	/**
+	 * 회원 등록
+	 */
 	@Override
 	public MemberEntity registerMember(MemberEntity memberEntity) {
 		memberEntity.setRegistrationDttm(new Date());
@@ -25,11 +28,17 @@ public class MemberDAOImpl implements MemberDAO{
 		return memberEntity;
 	}
 
+	/**
+	 * 회원번호로 회원 정보 조회
+	 */
 	@Override
 	public MemberEntity getMember(Integer mbNo) {
 		return memberRepository.getReferenceById(mbNo);
 	}
 
+	/**
+	 * ID로 회원 정보 조회 
+	 */
 	@Override
 	public MemberEntity getMemberById(String id) {
 		return memberRepository.findById(id);

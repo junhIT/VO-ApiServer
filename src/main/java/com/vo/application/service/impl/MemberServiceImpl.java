@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vo.application.data.dao.MemberDAO;
-import com.vo.application.data.dto.MemberDto;
-import com.vo.application.data.dto.RegisterDto;
+import com.vo.application.data.dto.MemberDTO;
+import com.vo.application.data.dto.MemberRegisterReqDTO;
 import com.vo.application.data.entity.MemberEntity;
+import com.vo.application.data.entity.PostEntity;
 import com.vo.application.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ public class MemberServiceImpl implements MemberService{
 	/**
 	 * 회원가입 
 	 */
-	public void registerMember(RegisterDto req) throws Exception {
+	public void registerMember(MemberRegisterReqDTO req) throws Exception {
 		
 		if( !req.getPassword().equals(req.getPasswordConfirm()) ) {
 			throw new Exception("비밀번호가 일치하지 않습니다.");
@@ -37,7 +38,7 @@ public class MemberServiceImpl implements MemberService{
 	/**
 	 * 회원 로그인 
 	 */
-	public void login(MemberDto req) throws Exception {
+	public void login(MemberDTO req) throws Exception {
 		
 		log.debug("login Start :: {}", req);
 		
@@ -57,18 +58,18 @@ public class MemberServiceImpl implements MemberService{
 	/**
 	 * 회원 정보 조회
 	 */
-	public MemberDto getMember(Integer mbNo) throws Exception {
+	public MemberDTO getMember(Integer mbNo) throws Exception {
 
-		MemberEntity memberRes = memberDao.getMember(mbNo);
+		MemberEntity entityRes = memberDao.getMember(mbNo);
 		
-		return MemberDto.builder()
-				.mbNo(memberRes.getMbNo())
-				.id(memberRes.getId())
-				.name(memberRes.getName())
-				.mbClsfc(memberRes.getMbClsfc())
-				.registrationDttm(memberRes.getRegistrationDttm())
-				.password(memberRes.getPassword())
-				.careerStartDate(memberRes.getCareerStartDate())
+		return MemberDTO.builder()
+				.mbNo(entityRes.getMbNo())
+				.id(entityRes.getId())
+				.name(entityRes.getName())
+				.mbClsfc(entityRes.getMbClsfc())
+				.registrationDttm(entityRes.getRegistrationDttm())
+				.password(entityRes.getPassword())
+				.careerStartDate(entityRes.getCareerStartDate())
 				.build();
 	}
 }

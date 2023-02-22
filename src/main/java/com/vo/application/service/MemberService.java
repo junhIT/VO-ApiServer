@@ -1,14 +1,14 @@
 package com.vo.application.service;
 
-import com.vo.application.data.dto.MemberDto;
-import com.vo.application.data.dto.RegisterDto;
+import com.vo.application.data.dto.MemberDTO;
+import com.vo.application.data.dto.MemberRegisterReqDTO;
 
 public interface MemberService {
 
-	void registerMember(RegisterDto req) throws Exception;
+	void registerMember(MemberRegisterReqDTO req) throws Exception;
 
-	void login(MemberDto req) throws Exception;
+	void login(MemberDTO req) throws Exception;
 
-	MemberDto getMember(Integer mbNo) throws Exception;
+	MemberDTO getMember(Integer mbNo) throws Exception;
 
 }

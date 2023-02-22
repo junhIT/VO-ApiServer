@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class MemberDto {
+public class MemberDTO {
 	
 	private int mbNo;	// 회원번호
 	private String id;	// 아이디

@@ -5,7 +5,7 @@ import com.vo.application.data.entity.MemberEntity;
 import lombok.Getter;
 
 @Getter
-public class RegisterDto {
+public class MemberRegisterReqDTO {
 
 	private String id;	// 아이디
 	private String password;	// 비밀번호
