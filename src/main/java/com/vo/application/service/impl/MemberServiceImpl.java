@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
 			throw new Exception("이미 존재하는 ID입니다.");
 		}
 		
-		memberDao.registerMember(req.toEntity());
+		memberDao.registerMember(req);
 	}
 
 	/**
@@ -42,15 +42,15 @@ public class MemberServiceImpl implements MemberService{
 		
 		log.debug("login Start :: {}", req);
 		
-		MemberEntity entityRes = memberDao.getMemberById(req.getId());
+		MemberDTO memberDto = memberDao.getMemberById(req.getId());
 
 		// 조회된 데이터가 없을 경우
-		if(entityRes == null) {
+		if(memberDto == null) {
 			throw new Exception("회원 정보가 없습니다.");
 		}
 
 		// 비밀번호가 일치하지 않을 경우
-		if( !entityRes.getPassword().equals(req.getPassword()) ) {
+		if( !memberDto.getPassword().equals(req.getPassword()) ) {
 			throw new Exception("비밀번호가 일치하지 않습니다.");
 		}
 	}
@@ -60,16 +60,6 @@ public class MemberServiceImpl implements MemberService{
 	 */
 	public MemberDTO getMember(Integer mbNo) throws Exception {
 
-		MemberEntity entityRes = memberDao.getMember(mbNo);
-		
-		return MemberDTO.builder()
-				.mbNo(entityRes.getMbNo())
-				.id(entityRes.getId())
-				.name(entityRes.getName())
-				.mbClsfc(entityRes.getMbClsfc())
-				.registrationDttm(entityRes.getRegistrationDttm())
-				.password(entityRes.getPassword())
-				.careerStartDate(entityRes.getCareerStartDate())
-				.build();
+		return memberDao.getMember(mbNo);
 	}
 }

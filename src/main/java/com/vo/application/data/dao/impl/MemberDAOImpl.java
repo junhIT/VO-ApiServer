@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vo.application.data.dao.MemberDAO;
+import com.vo.application.data.dto.MemberDTO;
+import com.vo.application.data.dto.MemberRegisterReqDTO;
 import com.vo.application.data.entity.MemberEntity;
 import com.vo.application.data.reprository.MemberRepository;
 
@@ -19,28 +21,49 @@ public class MemberDAOImpl implements MemberDAO{
 	 * 회원 등록
 	 */
 	@Override
-	public MemberEntity registerMember(MemberEntity memberEntity) {
-		memberEntity.setRegistrationDttm(new Date());
-		memberEntity.setFrstRegiDttm(new Date());
-		memberEntity.setMbClsfc("1");	// 정상
+	public void registerMember(MemberRegisterReqDTO req) {
 		
-		memberRepository.save(memberEntity);
-		return memberEntity;
+		MemberEntity entityReq = req.toEntity();
+		
+		entityReq.setRegistrationDttm(new Date());
+		entityReq.setFrstRegiDttm(new Date());
+		entityReq.setMbClsfc("1");	// 정상
+		
+		memberRepository.save(entityReq);
 	}
 
 	/**
 	 * 회원번호로 회원 정보 조회
 	 */
 	@Override
-	public MemberEntity getMember(Integer mbNo) {
-		return memberRepository.getReferenceById(mbNo);
+	public MemberDTO getMember(Integer mbNo) {
+		MemberEntity entityRes = memberRepository.getReferenceById(mbNo);
+		
+		return MemberDTO.builder()
+						.id(entityRes.getId())
+						.name(entityRes.getName())
+						.careerStartDate(entityRes.getCareerStartDate())
+						.mbClsfc(entityRes.getMbClsfc())
+						.registrationDttm(entityRes.getRegistrationDttm())
+						.withdrawalDttm(entityRes.getWithdrawalDttm())
+						.build();
 	}
 
 	/**
 	 * ID로 회원 정보 조회 
 	 */
 	@Override
-	public MemberEntity getMemberById(String id) {
-		return memberRepository.findById(id);
+	public MemberDTO getMemberById(String id) {
+		MemberEntity entityRes = memberRepository.findById(id);
+		
+		return MemberDTO.builder()
+				.id(entityRes.getId())
+				.password(entityRes.getPassword())
+				.name(entityRes.getName())
+				.careerStartDate(entityRes.getCareerStartDate())
+				.mbClsfc(entityRes.getMbClsfc())
+				.registrationDttm(entityRes.getRegistrationDttm())
+				.withdrawalDttm(entityRes.getWithdrawalDttm())
+				.build();
 	}
 }

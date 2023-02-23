@@ -1,12 +1,13 @@
 package com.vo.application.data.dao;
 
-import com.vo.application.data.entity.MemberEntity;
+import com.vo.application.data.dto.MemberDTO;
+import com.vo.application.data.dto.MemberRegisterReqDTO;
 
 public interface MemberDAO {
 
-	MemberEntity registerMember(MemberEntity memberEntity);
+	void registerMember(MemberRegisterReqDTO memberEntity);
 	
-	MemberEntity getMember(Integer mbNo);
+	MemberDTO getMember(Integer mbNo);
 
-	MemberEntity getMemberById(String id);
+	MemberDTO getMemberById(String id);
 }
