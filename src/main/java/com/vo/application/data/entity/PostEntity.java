@@ -2,6 +2,7 @@ package com.vo.application.data.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +39,9 @@ public class PostEntity {
 	private int	price;	//단가
 	private String recordingPlace;	// 녹음장소
 	private String useYn;	// 사용여부
+	
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private int view;	// 조회수
 	private Date frstRegiDttm;	// 최초등록일시
 	private Date lastChngDttm;	// 마지막수정일시
 }

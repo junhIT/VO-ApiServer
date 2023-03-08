@@ -24,6 +24,7 @@ public class PostDTO {
 	private Integer	price;	//단가
 	private String recordingPlace;	// 녹음장소
 	private String useYn;	// 사용여부
+	private int view;	// 조회수
 	private Date frstRegiDttm;	// 최초등록일시
 	private Date lastChngDttm;	// 마지막수정일시
 	

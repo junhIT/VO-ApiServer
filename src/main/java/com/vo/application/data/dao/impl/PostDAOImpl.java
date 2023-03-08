@@ -50,6 +50,7 @@ public class PostDAOImpl implements PostDAO {
 																		.price(m.getPrice())
 																		.recordingPlace(m.getRecordingPlace())
 																		.useYn(m.getUseYn())
+																		.view(m.getView())
 																		.build())
 												.collect(Collectors.toList());
 		
@@ -63,6 +64,8 @@ public class PostDAOImpl implements PostDAO {
 	public PostDTO getPost(int postNo) {
 		PostEntity postEntityRes = postRepository.getReferenceById(postNo);
 		
+		postRepository.updateView(postNo);
+		
 		return PostDTO.builder()
 					.postNo(postEntityRes.getPostNo())
 					.memberNo(postEntityRes.getMember().getMbNo())
@@ -73,6 +76,7 @@ public class PostDAOImpl implements PostDAO {
 					.price(postEntityRes.getPrice())
 					.recordingPlace(postEntityRes.getRecordingPlace())
 					.useYn(postEntityRes.getUseYn())
+					.view(postEntityRes.getView())
 					.build();
 	}
 }
