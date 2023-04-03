@@ -66,4 +66,29 @@ public class MemberDAOImpl implements MemberDAO{
 				.withdrawalDttm(entityRes.getWithdrawalDttm())
 				.build();
 	}
+
+	/**
+	 * 회원 정보 업데이트
+	 */
+	@Override
+	public MemberDTO updateMember(MemberDTO memberDto) {
+		
+		MemberEntity entityReq = memberRepository.findById(memberDto.getId());
+		
+		entityReq.setName(memberDto.getName());
+		entityReq.setCareerStartDate(memberDto.getCareerStartDate());
+		entityReq.setPassword(memberDto.getPassword());
+
+		MemberEntity entityRes = memberRepository.save(entityReq);
+		
+		return MemberDTO.builder()
+				.id(entityRes.getId())
+				.password(entityRes.getPassword())
+				.name(entityRes.getName())
+				.careerStartDate(entityRes.getCareerStartDate())
+				.mbClsfc(entityRes.getMbClsfc())
+				.registrationDttm(entityRes.getRegistrationDttm())
+				.withdrawalDttm(entityRes.getWithdrawalDttm())
+				.build();	
+	}
 }

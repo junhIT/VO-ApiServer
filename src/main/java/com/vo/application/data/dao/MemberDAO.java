@@ -10,4 +10,6 @@ public interface MemberDAO {
 	MemberDTO getMember(Integer mbNo);
 
 	MemberDTO getMemberById(String id);
+	
+	MemberDTO updateMember(MemberDTO memberDto);
 }
