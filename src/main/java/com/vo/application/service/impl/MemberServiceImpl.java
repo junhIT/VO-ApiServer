@@ -1,5 +1,9 @@
 package com.vo.application.service.impl;
 
+import java.io.File;
+import java.util.Objects;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -7,8 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.vo.application.data.dao.MemberDAO;
 import com.vo.application.data.dto.MemberDTO;
 import com.vo.application.data.dto.MemberRegisterReqDTO;
-import com.vo.application.data.entity.MemberEntity;
-import com.vo.application.data.entity.PostEntity;
 import com.vo.application.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -81,7 +83,7 @@ public class MemberServiceImpl implements MemberService{
 		MemberDTO memberDto = memberDao.getMemberById(req.getId());
 
 		// 조회된 데이터가 없을 경우
-		if(memberDto == null) {
+		if( memberDto == null ) {
 			throw new Exception("회원 정보가 없습니다.");
 		}
 		
@@ -90,6 +92,26 @@ public class MemberServiceImpl implements MemberService{
 			throw new Exception("비밀번호가 일치하지 않습니다.");
 		}
 		
-		return memberDao.updateMember(req);
+		memberDao.updateMember(req);
+
+		// 프로필파일이 있을 경우 저장
+		if( Objects.nonNull(file) && file.getSize() > 0 ) {
+			log.debug(":::::::::::::::::::::::::::::::: 프로필 저장 ::::::::::::::::::::::::::::::::::");
+			
+			String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profiles";
+			
+			UUID uuid = UUID.randomUUID();
+			
+			String fileName = uuid + "_" + file.getOriginalFilename();
+			
+			File saveFile = new File(filePath, fileName);
+			
+			file.transferTo(saveFile);
+			
+			// 여기에 Profile Repository DB 저장.
+		}
+
+		
+		return MemberDTO.builder().build();
 	}
 }

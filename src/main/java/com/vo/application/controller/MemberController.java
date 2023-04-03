@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vo.application.common.dto.ApiResponse;
 import com.vo.application.data.dto.MemberDTO;
@@ -61,7 +62,7 @@ public class MemberController {
 	 * 회원 정보 변경
 	 */
 	@PutMapping("/member")
-	public ApiResponse<?> updateMember(@RequestBody MemberDTO req) throws Exception {
-		return ApiResponse.success(memberService.updateMember(req));
+	public ApiResponse<?> updateMember(MemberDTO req, MultipartFile file) throws Exception {
+		return ApiResponse.success(memberService.updateMember(req, file));
 	}
 }
