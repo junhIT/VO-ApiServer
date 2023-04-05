@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vo.application.data.dao.MemberAtchDAO;
 import com.vo.application.data.dao.MemberDAO;
+import com.vo.application.data.dto.MemberAtchDTO;
 import com.vo.application.data.dto.MemberDTO;
 import com.vo.application.data.dto.MemberRegisterReqDTO;
 import com.vo.application.service.MemberService;
@@ -21,6 +23,9 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private MemberDAO memberDao;
+	
+	@Autowired
+	private MemberAtchDAO memberAtchDao;
 
 	/**
 	 * 회원가입 
@@ -77,7 +82,7 @@ public class MemberServiceImpl implements MemberService{
 	 */
 	public MemberDTO updateMember(MemberDTO req, MultipartFile file) throws Exception {
 		
-		log.debug(":::::::::::::::::::::::::::::::: 회원정보 수정 ::::::::::::::::::::::::::::::::::");
+		log.debug(":::::::::::::::::::::::::::::::: 회원정보 수정 START ::::::::::::::::::::::::::::::::::");
 		log.debug(req.toString());
 
 		MemberDTO memberDto = memberDao.getMemberById(req.getId());
@@ -92,25 +97,34 @@ public class MemberServiceImpl implements MemberService{
 			throw new Exception("비밀번호가 일치하지 않습니다.");
 		}
 		
-		memberDao.updateMember(req);
-
+		MemberDTO memberRes = memberDao.updateMember(req);
+		
 		// 프로필파일이 있을 경우 저장
 		if( Objects.nonNull(file) && file.getSize() > 0 ) {
-			log.debug(":::::::::::::::::::::::::::::::: 프로필 저장 ::::::::::::::::::::::::::::::::::");
+			log.debug(":::::::::::::::::::::::::::::::: 프로필 저장 START ::::::::::::::::::::::::::::::::::");
 			
-			String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profiles";
+			// @TODO : 파일저장경로 properties에 설정.
+			String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profiles";	// 파일저장경로 
+			UUID uuid = UUID.randomUUID();	// UUID
+			String originalFileName = file.getOriginalFilename();	// 실제파일명
+			String fileName = uuid + "_" + originalFileName;	// 서버에 저장되는 파일명
 			
-			UUID uuid = UUID.randomUUID();
+			log.debug("filePath : {}, uuid : {}, originaFileName : {}, fileName : {}", filePath, uuid, originalFileName, fileName);
 			
-			String fileName = uuid + "_" + file.getOriginalFilename();
-			
+			// 파일 서버에 저장
 			File saveFile = new File(filePath, fileName);
-			
 			file.transferTo(saveFile);
 			
-			// 여기에 Profile Repository DB 저장.
+			// 서버에 저장된 파일 정보 DB에 저장
+			MemberAtchDTO memberAtchRes = memberAtchDao.saveMemberAtch(MemberAtchDTO.builder()
+														.member(MemberDTO.builder().mbNo(memberDto.getMbNo()).build())
+														.actlFileNm(originalFileName)
+														.fileNm(fileName)
+														.fileUrl(filePath)
+														.build());
 		}
 
+		log.debug(":::::::::::::::::::::::::::::::: 회원정보 수정 END ::::::::::::::::::::::::::::::::::");
 		
 		return MemberDTO.builder().build();
 	}

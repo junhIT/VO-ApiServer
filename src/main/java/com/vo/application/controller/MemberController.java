@@ -65,4 +65,16 @@ public class MemberController {
 	public ApiResponse<?> updateMember(MemberDTO req, MultipartFile file) throws Exception {
 		return ApiResponse.success(memberService.updateMember(req, file));
 	}
+	
+	/**
+	 * 프로필 이미지 출력
+	 */
+	@GetMapping("/member/profile/{mbNo}")
+	public ApiResponse<?> getMemberProfileImg(@PathVariable(required = true) Integer mbNo) throws Exception {
+		// @TODO :: 프로필 이미지 Download & byteArray 출력 작성하고 추후 FileUtil에 공통 Class 생성
+		
+		byte[] imageByteArray = null;
+		
+		return ApiResponse.success(imageByteArray);
+	}
 }

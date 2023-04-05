@@ -31,6 +31,8 @@ dependencies {
 	
 	// Swagger(springdoc)
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+	// https://mvnrepository.com/artifact/commons-io/commons-io
+	implementation 'commons-io:commons-io:2.6'
 }
 
 tasks.named('test') {
