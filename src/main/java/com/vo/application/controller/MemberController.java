@@ -1,5 +1,9 @@
 package com.vo.application.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import org.apache.commons.compress.utils.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.vo.application.common.dto.ApiResponse;
 import com.vo.application.data.dto.MemberDTO;
 import com.vo.application.data.dto.MemberRegisterReqDTO;
+import com.vo.application.data.entity.MemberAtchEntity;
+import com.vo.application.data.reprository.MemberAtchRepository;
 import com.vo.application.service.MemberService;
 
 @RestController
@@ -21,6 +27,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private MemberAtchRepository memberAtchRepository;
 	
 	/**
 	 * 회원가입
@@ -72,8 +81,14 @@ public class MemberController {
 	@GetMapping("/member/profile/{mbNo}")
 	public ApiResponse<?> getMemberProfileImg(@PathVariable(required = true) Integer mbNo) throws Exception {
 		// @TODO :: 프로필 이미지 Download & byteArray 출력 작성하고 추후 FileUtil에 공통 Class 생성
+		MemberAtchEntity res = memberAtchRepository.getReferenceById(1);
+		String fileUrl = res.getFileUrl();
+		String fileName = res.getFileNm();
+		String fileFullUrl = fileUrl + "\\" + fileName;
 		
-		byte[] imageByteArray = null;
+		File profileImg = new File(fileFullUrl);
+		
+		byte[] imageByteArray = IOUtils.toByteArray(new FileInputStream(profileImg));
 		
 		return ApiResponse.success(imageByteArray);
 	}
