@@ -30,6 +30,9 @@ public class PostSaveReqDTO {
 	private String view;	// 조회수
 	private Date frstRegiDttm;	// 최초등록일시
 	private Date lastChngDttm;	// 마지막수정일시
+
+	// TODO Session 이전 mbNo 받아서 처리하도록.
+	private Integer mbNo;	// 회원번호
 	
 	public PostEntity toEntity() {
 		return PostEntity.builder()

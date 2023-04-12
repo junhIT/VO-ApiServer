@@ -8,7 +8,7 @@ import com.vo.application.data.dto.PostSaveReqDTO;
 public interface PostService {
 	
 	// 게시글 저장
-	PostDTO registerPost(PostSaveReqDTO postDto);
+	PostDTO registerPost(PostSaveReqDTO postDto) throws Exception;
 	
 	// 게시글 목록 조회
 	List<PostDTO> getPostList();

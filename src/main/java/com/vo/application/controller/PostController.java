@@ -23,7 +23,7 @@ public class PostController {
 	 * 게시글 등록
 	 */
 	@PostMapping("/post")
-	public Object savePost(@RequestBody PostSaveReqDTO req) {
+	public ApiResponse<?> savePost(@RequestBody PostSaveReqDTO req) throws Exception {
 		
 		return ApiResponse.success(postService.registerPost(req));
 	}
@@ -32,7 +32,7 @@ public class PostController {
 	 * 게시글 목록 조회
 	 */
 	@GetMapping("/post")
-	public Object getListPost() {
+	public ApiResponse<?> getListPost() {
 		
 		return ApiResponse.success(postService.getPostList());
 	}
@@ -40,7 +40,7 @@ public class PostController {
 	 * 게시글 상세 조회
 	 */
 	@GetMapping("/post/{postNo}")
-	public Object getPost(@PathVariable(required = true) int postNo) {
+	public ApiResponse<?> getPost(@PathVariable(required = true) int postNo) {
 		
 		return ApiResponse.success(postService.getPost(postNo));
 	}

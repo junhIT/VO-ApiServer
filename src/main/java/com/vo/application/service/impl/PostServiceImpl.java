@@ -20,11 +20,16 @@ public class PostServiceImpl implements PostService{
 
 	/**
 	 * 게시글 등록 
+	 * @throws Exception 
 	 */
-	public PostDTO registerPost(PostSaveReqDTO postDto) {
+	public PostDTO registerPost(PostSaveReqDTO postDto) throws Exception {
+		
+		if(postDto.getMbNo() == null) {
+			throw new Exception("MbNO가 없어요");
+		}
 		
 		// TODO 회원 정보 Session에서 불러오기
-		postDto.setMemberDTO(MemberDTO.builder().mbNo(3).build());
+		postDto.setMemberDTO(MemberDTO.builder().mbNo(postDto.getMbNo()).build());
 		
 		return postDao.savePost(postDto);
 	}
