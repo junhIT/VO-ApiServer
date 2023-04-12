@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 
 import org.apache.commons.compress.utils.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberAtchRepository memberAtchRepository;
+	
+    @Autowired
+    private Environment environment;
 	
 	/**
 	 * 회원가입
@@ -62,9 +66,9 @@ public class MemberController {
 	/**
 	 * 회원 정보 조회
 	 */
-	@GetMapping("/member/{mbNo}")
-	public ApiResponse<?> getMember(@PathVariable(required = true) Integer mbNo) throws Exception {
-		return ApiResponse.success(memberService.getMember(mbNo));
+	@GetMapping("/member/{id}")
+	public ApiResponse<?> getMember(@PathVariable(required = true) String id) throws Exception {
+		return ApiResponse.success(memberService.getMember(id));
 	}
 	
 	/**
@@ -79,12 +83,17 @@ public class MemberController {
 	 * 프로필 이미지 출력
 	 */
 	@GetMapping("/member/profile/{mbNo}")
-	public ApiResponse<?> getMemberProfileImg(@PathVariable(required = true) Integer mbNo) throws Exception {
-		// @TODO :: 프로필 이미지 Download & byteArray 출력 작성하고 추후 FileUtil에 공통 Class 생성
-		MemberAtchEntity res = memberAtchRepository.getReferenceById(1);
+	public ApiResponse<?> getMemberProfileImg(@PathVariable(required = true) int mbNo) throws Exception {
+		// TODO :: 프로필 이미지 Download & byteArray 출력 작성하고 추후 FileUtil에 공통 Class 생성
+		MemberAtchEntity res = memberAtchRepository.findByMember_MbNo(mbNo);
 		String fileUrl = res.getFileUrl();
 		String fileName = res.getFileNm();
 		String fileFullUrl = fileUrl + "\\" + fileName;
+		
+		// local일 경우 url
+		if(System.getProperty("Spring.profiles.active").toString().equals("local")) {
+			fileFullUrl = fileUrl + "/" + fileName;	// TODO 서버경로
+		}
 		
 		File profileImg = new File(fileFullUrl);
 		

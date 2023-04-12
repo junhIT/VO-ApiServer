@@ -40,6 +40,7 @@ public class MemberDAOImpl implements MemberDAO{
 		MemberEntity entityRes = memberRepository.getReferenceById(mbNo);
 		
 		return MemberDTO.builder()
+						.mbNo(entityRes.getMbNo())
 						.id(entityRes.getId())
 						.name(entityRes.getName())
 						.careerStartDate(entityRes.getCareerStartDate())

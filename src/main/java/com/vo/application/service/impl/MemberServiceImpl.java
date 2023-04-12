@@ -28,94 +28,100 @@ public class MemberServiceImpl implements MemberService{
 	private MemberAtchDAO memberAtchDao;
 
 	/**
-	 * È¸¿ø°¡ÀÔ 
+	 * íšŒì›ê°€ì… 
 	 */
 	public void registerMember(MemberRegisterReqDTO req) throws Exception {
 		
-		log.debug(":::::::::::::::::::::::::::::::: È¸¿ø °¡ÀÔ ::::::::::::::::::::::::::::::::::");
+		log.debug(":::::::::::::::::::::::::::::::: íšŒì› ê°€ì… ::::::::::::::::::::::::::::::::::");
 		log.debug(req.toString());
 
 		if( !req.getPassword().equals(req.getPasswordConfirm()) ) {
-			throw new Exception("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new Exception("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		
 		if( memberDao.getMemberById(req.getId()) != null ) {
-			throw new Exception("ÀÌ¹Ì Á¸ÀçÇÏ´Â IDÀÔ´Ï´Ù.");
+			throw new Exception("ì´ë¯¸ ì¡´ì¬í•˜ëŠ” IDì…ë‹ˆë‹¤.");
 		}
 		
 		memberDao.registerMember(req);
 	}
 
 	/**
-	 * È¸¿ø ·Î±×ÀÎ 
+	 * íšŒì› ë¡œê·¸ì¸ 
 	 */
 	public void login(MemberDTO req) throws Exception {
 		
-		log.debug(":::::::::::::::::::::::::::::::: È¸¿ø ·Î±×ÀÎ ::::::::::::::::::::::::::::::::::");
+		log.debug(":::::::::::::::::::::::::::::::: íšŒì› ë¡œê·¸ì¸ ::::::::::::::::::::::::::::::::::");
 		log.debug(req.toString());
 		
 		MemberDTO memberDto = memberDao.getMemberById(req.getId());
 
-		// Á¶È¸µÈ µ¥ÀÌÅÍ°¡ ¾øÀ» °æ¿ì
+		// ì¡°íšŒëœ ë°ì´í„°ê°€ ì—†ì„ ê²½ìš°
 		if(memberDto == null) {
-			throw new Exception("È¸¿ø Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+			throw new Exception("íšŒì› ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 
-		// ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ» °æ¿ì
+		// ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•Šì„ ê²½ìš°
 		if( !memberDto.getPassword().equals(req.getPassword()) ) {
-			throw new Exception("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new Exception("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 	}
 	
 	/**
-	 * È¸¿ø Á¤º¸ Á¶È¸
+	 * íšŒì› ì •ë³´ ì¡°íšŒ
 	 */
-	public MemberDTO getMember(Integer mbNo) throws Exception {
+	public MemberDTO getMember(String id) throws Exception {
 
-		log.debug(":::::::::::::::::::::::::::::::: È¸¿øÁ¤º¸ Á¶È¸ ::::::::::::::::::::::::::::::::::");
+		log.debug(":::::::::::::::::::::::::::::::: íšŒì›ì •ë³´ ì¡°íšŒ ::::::::::::::::::::::::::::::::::");
 
-		return memberDao.getMember(mbNo);
+		return memberDao.getMemberById(id);
 	}
 	
 	/**
-	 * È¸¿ø Á¤º¸ ¼öÁ¤
+	 * íšŒì› ì •ë³´ ìˆ˜ì •
 	 */
 	public MemberDTO updateMember(MemberDTO req, MultipartFile file) throws Exception {
 		
-		log.debug(":::::::::::::::::::::::::::::::: È¸¿øÁ¤º¸ ¼öÁ¤ START ::::::::::::::::::::::::::::::::::");
+		log.debug(":::::::::::::::::::::::::::::::: íšŒì›ì •ë³´ ìˆ˜ì • START ::::::::::::::::::::::::::::::::::");
 		log.debug(req.toString());
 
 		MemberDTO memberDto = memberDao.getMemberById(req.getId());
 
-		// Á¶È¸µÈ µ¥ÀÌÅÍ°¡ ¾øÀ» °æ¿ì
+		// ì¡°íšŒëœ ë°ì´í„°ê°€ ì—†ì„ ê²½ìš°
 		if( memberDto == null ) {
-			throw new Exception("È¸¿ø Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+			throw new Exception("íšŒì› ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
-		// ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ» °æ¿ì
+		// ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•Šì„ ê²½ìš°
 		if( !memberDto.getPassword().equals(req.getPassword()) ) {
-			throw new Exception("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new Exception("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		
 		MemberDTO memberRes = memberDao.updateMember(req);
 		
-		// ÇÁ·ÎÇÊÆÄÀÏÀÌ ÀÖÀ» °æ¿ì ÀúÀå
+		// í”„ë¡œí•„íŒŒì¼ì´ ìˆì„ ê²½ìš° ì €ì¥
 		if( Objects.nonNull(file) && file.getSize() > 0 ) {
-			log.debug(":::::::::::::::::::::::::::::::: ÇÁ·ÎÇÊ ÀúÀå START ::::::::::::::::::::::::::::::::::");
+			log.debug(":::::::::::::::::::::::::::::::: í”„ë¡œí•„ ì €ì¥ START ::::::::::::::::::::::::::::::::::");
 			
-			// @TODO : ÆÄÀÏÀúÀå°æ·Î properties¿¡ ¼³Á¤.
-			String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profiles";	// ÆÄÀÏÀúÀå°æ·Î 
+			// @TODO : íŒŒì¼ì €ì¥ê²½ë¡œ propertiesì— ì„¤ì •.
+			String filePath = "/home/ubuntu/vo/upload";	// íŒŒì¼ì €ì¥ê²½ë¡œ
+			
+			// localì¼ ê²½ìš°
+			if(System.getProperty("Spring.profiles.active").toString().equals("local")) {
+				filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profiles";
+			}
+
 			UUID uuid = UUID.randomUUID();	// UUID
-			String originalFileName = file.getOriginalFilename();	// ½ÇÁ¦ÆÄÀÏ¸í
-			String fileName = uuid + "_" + originalFileName;	// ¼­¹ö¿¡ ÀúÀåµÇ´Â ÆÄÀÏ¸í
+			String originalFileName = file.getOriginalFilename();	// ì‹¤ì œíŒŒì¼ëª…
+			String fileName = uuid + "_" + originalFileName;	// ì„œë²„ì— ì €ì¥ë˜ëŠ” íŒŒì¼ëª…
 			
 			log.debug("filePath : {}, uuid : {}, originaFileName : {}, fileName : {}", filePath, uuid, originalFileName, fileName);
 			
-			// ÆÄÀÏ ¼­¹ö¿¡ ÀúÀå
+			// íŒŒì¼ ì„œë²„ì— ì €ì¥
 			File saveFile = new File(filePath, fileName);
 			file.transferTo(saveFile);
 			
-			// ¼­¹ö¿¡ ÀúÀåµÈ ÆÄÀÏ Á¤º¸ DB¿¡ ÀúÀå
+			// ì„œë²„ì— ì €ì¥ëœ íŒŒì¼ ì •ë³´ DBì— ì €ì¥
 			MemberAtchDTO memberAtchRes = memberAtchDao.saveMemberAtch(MemberAtchDTO.builder()
 														.member(MemberDTO.builder().mbNo(memberDto.getMbNo()).build())
 														.actlFileNm(originalFileName)
@@ -124,7 +130,7 @@ public class MemberServiceImpl implements MemberService{
 														.build());
 		}
 
-		log.debug(":::::::::::::::::::::::::::::::: È¸¿øÁ¤º¸ ¼öÁ¤ END ::::::::::::::::::::::::::::::::::");
+		log.debug(":::::::::::::::::::::::::::::::: íšŒì›ì •ë³´ ìˆ˜ì • END ::::::::::::::::::::::::::::::::::");
 		
 		return MemberDTO.builder().build();
 	}

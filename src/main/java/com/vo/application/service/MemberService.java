@@ -11,7 +11,7 @@ public interface MemberService {
 
 	void login(MemberDTO req) throws Exception;
 
-	MemberDTO getMember(Integer mbNo) throws Exception;
+	MemberDTO getMember(String id) throws Exception;
 	
 	MemberDTO updateMember(MemberDTO memberDto, MultipartFile file) throws Exception;
 
