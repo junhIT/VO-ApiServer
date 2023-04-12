@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.vo.application.data.entity.MemberAtchEntity;
 
 /**
- * È¸¿øÃ·ºÎ³»¿ª Å×ÀÌºí Repository 
+ * íšŒì›ì²¨ë¶€ë‚´ì—­ í…Œì´ë¸” Repository 
  */
 public interface MemberAtchRepository extends JpaRepository<MemberAtchEntity, Integer>{
 	
-	// È¸¿ø¹øÈ£·Î È¸¿øÃ·ºÎ³»¿ª Á¤º¸ °¡Á®¿À±â
+	// íšŒì›ë²ˆí˜¸ë¡œ íšŒì›ì²¨ë¶€ë‚´ì—­ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 	MemberAtchEntity findByMember_MbNo(int mbNo);
 }

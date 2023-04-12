@@ -3,11 +3,11 @@ package com.vo.application.data.dao;
 import com.vo.application.data.dto.MemberAtchDTO;
 
 /**
- * È¸¿øÃ·ºÎ³»¿ª 
+ * íšŒì›ì²¨ë¶€ë‚´ì—­ 
  * DAO 
  */
 public interface MemberAtchDAO {
 
-	// È¸¿øÃ·ºÎ³»¿ª ÀúÀå
+	// íšŒì›ì²¨ë¶€ë‚´ì—­ ì €ì¥
 	MemberAtchDTO saveMemberAtch(MemberAtchDTO req);
 }

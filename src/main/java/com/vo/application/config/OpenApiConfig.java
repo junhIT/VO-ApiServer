@@ -8,9 +8,9 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 
 /**
- * Å¬·¡½º¸í : OpenApiconfig.java
- * Å¬·¡½º¼³¸í : Swagger springdoc-ui ±¸¼º ÆÄÀÏ
- * ÀÛ¼ºÀÏ : 2023-03-13
+ * í´ë˜ìŠ¤ëª… : OpenApiconfig.java
+ * í´ë˜ìŠ¤ì„¤ëª… : Swagger springdoc-ui êµ¬ì„± íŒŒì¼
+ * ì‘ì„±ì¼ : 2023-03-13
  */
 @Configuration
 public class OpenApiConfig {
@@ -19,7 +19,7 @@ public class OpenApiConfig {
 		Info info = new Info()
 				.title("VO API Swagger")
 				.version("V0.0.1")
-				.description("VO ÇÁ·ÎÁ§Æ® API ¸í¼¼¼­ÀÔ´Ï´Ù.");
+				.description("VO í”„ë¡œì íŠ¸ API ëª…ì„¸ì„œì…ë‹ˆë‹¤.");
 		return new OpenAPI()
 				.components(new Components())
 				.info(info);

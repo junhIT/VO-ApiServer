@@ -20,7 +20,7 @@ public class PostDAOImpl implements PostDAO {
 	PostRepository postRepository;
 	
 	/**
-	 * °Ô½Ã±Û ÀúÀå
+	 * ê²Œì‹œê¸€ ì €ì¥
 	 */
 	@Override
 	public PostDTO savePost(PostSaveReqDTO req) {
@@ -31,7 +31,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	/**
-	 * °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+	 * ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ
 	 */
 	@Override
 	public List<PostDTO> getPostList() {
@@ -58,7 +58,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	/**
-	 * °Ô½Ã±Û »ó¼¼ Á¶È¸
+	 * ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒ
 	 */
 	@Override
 	public PostDTO getPost(int postNo) {

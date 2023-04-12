@@ -20,7 +20,7 @@ public class PostController {
 	PostService postService;
 	
 	/**
-	 * °Ô½Ã±Û µî·Ï
+	 * ê²Œì‹œê¸€ ë“±ë¡
 	 */
 	@PostMapping("/post")
 	public ApiResponse<?> savePost(@RequestBody PostSaveReqDTO req) throws Exception {
@@ -29,7 +29,7 @@ public class PostController {
 	}
 
 	/**
-	 * °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+	 * ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ
 	 */
 	@GetMapping("/post")
 	public ApiResponse<?> getListPost() {
@@ -37,7 +37,7 @@ public class PostController {
 		return ApiResponse.success(postService.getPostList());
 	}
 	/**
-	 * °Ô½Ã±Û »ó¼¼ Á¶È¸
+	 * ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒ
 	 */
 	@GetMapping("/post/{postNo}")
 	public ApiResponse<?> getPost(@PathVariable(required = true) int postNo) {

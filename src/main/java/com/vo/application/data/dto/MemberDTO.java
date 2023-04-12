@@ -17,14 +17,14 @@ import lombok.ToString;
 @Builder
 public class MemberDTO {
 	
-	private int mbNo;	// È¸¿ø¹øÈ£
-	private String id;	// ¾ÆÀÌµğ
-	private String password;	// ºñ¹Ğ¹øÈ£
-	private String name;	// ÀÌ¸§
-	private String careerStartDate;	// °æ·Â½ÃÀÛÀÏÀÚ
-	private String mbClsfc;	// È¸¿ø±¸ºĞ
-	private Date registrationDttm;	// µî·ÏÀÏÀÚ
-	private Date withdrawalDttm;	// Å»ÅğÀÏÀÚ
+	private int mbNo;	// íšŒì›ë²ˆí˜¸
+	private String id;	// ì•„ì´ë””
+	private String password;	// ë¹„ë°€ë²ˆí˜¸
+	private String name;	// ì´ë¦„
+	private String careerStartDate;	// ê²½ë ¥ì‹œì‘ì¼ì
+	private String mbClsfc;	// íšŒì›êµ¬ë¶„
+	private Date registrationDttm;	// ë“±ë¡ì¼ì
+	private Date withdrawalDttm;	// íƒˆí‡´ì¼ì
 	
 	public MemberEntity toEntity() {
 		return MemberEntity.builder()

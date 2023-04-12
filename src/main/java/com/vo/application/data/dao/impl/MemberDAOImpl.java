@@ -18,7 +18,7 @@ public class MemberDAOImpl implements MemberDAO{
 	MemberRepository memberRepository;
 
 	/**
-	 * È¸¿ø µî·Ï
+	 * íšŒì› ë“±ë¡
 	 */
 	@Override
 	public void registerMember(MemberRegisterReqDTO req) {
@@ -27,13 +27,13 @@ public class MemberDAOImpl implements MemberDAO{
 		
 		entityReq.setRegistrationDttm(new Date());
 		entityReq.setFrstRegiDttm(new Date());
-		entityReq.setMbClsfc("1");	// Á¤»ó
+		entityReq.setMbClsfc("1");	// ì •ìƒ
 		
 		memberRepository.save(entityReq);
 	}
 
 	/**
-	 * È¸¿ø¹øÈ£·Î È¸¿ø Á¤º¸ Á¶È¸
+	 * íšŒì›ë²ˆí˜¸ë¡œ íšŒì› ì •ë³´ ì¡°íšŒ
 	 */
 	@Override
 	public MemberDTO getMember(Integer mbNo) {
@@ -51,7 +51,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	/**
-	 * ID·Î È¸¿ø Á¤º¸ Á¶È¸ 
+	 * IDë¡œ íšŒì› ì •ë³´ ì¡°íšŒ 
 	 */
 	@Override
 	public MemberDTO getMemberById(String id) {
@@ -70,7 +70,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	/**
-	 * È¸¿ø Á¤º¸ ¾÷µ¥ÀÌÆ®
+	 * íšŒì› ì •ë³´ ì—…ë°ì´íŠ¸
 	 */
 	@Override
 	public MemberDTO updateMember(MemberDTO memberDto) {

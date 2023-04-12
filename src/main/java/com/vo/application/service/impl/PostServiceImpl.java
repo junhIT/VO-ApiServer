@@ -19,23 +19,23 @@ public class PostServiceImpl implements PostService{
 	private PostDAO postDao;
 
 	/**
-	 * °Ô½Ã±Û µî·Ï 
+	 * ê²Œì‹œê¸€ ë“±ë¡ 
 	 * @throws Exception 
 	 */
 	public PostDTO registerPost(PostSaveReqDTO postDto) throws Exception {
 		
 		if(postDto.getMbNo() == null) {
-			throw new Exception("MbNO°¡ ¾ø¾î¿ä");
+			throw new Exception("MbNOê°€ ì—†ì–´ìš”");
 		}
 		
-		// TODO È¸¿ø Á¤º¸ Session¿¡¼­ ºÒ·¯¿À±â
+		// TODO íšŒì› ì •ë³´ Sessionì—ì„œ ë¶ˆëŸ¬ì˜¤ê¸°
 		postDto.setMemberDTO(MemberDTO.builder().mbNo(postDto.getMbNo()).build());
 		
 		return postDao.savePost(postDto);
 	}
 
 	/**
-	 * °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+	 * ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ
 	 */
 	@Override
 	public List<PostDTO> getPostList() {
@@ -44,7 +44,7 @@ public class PostServiceImpl implements PostService{
 	}
 
 	/**
-	 * °Ô½Ã±Û »ó¼¼ Á¶È¸
+	 * ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒ
 	 */
 	@Override
 	public PostDTO getPost(int postNo) {

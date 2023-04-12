@@ -36,7 +36,7 @@ public class MemberController {
     private Environment environment;
 	
 	/**
-	 * È¸¿ø°¡ÀÔ
+	 * íšŒì›ê°€ì…
 	 */
 	@PostMapping("/register")
 	public ApiResponse<?> registerMember(@RequestBody MemberRegisterReqDTO req) throws Exception {
@@ -50,7 +50,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * ·Î±×ÀÎ
+	 * ë¡œê·¸ì¸
 	 */
 	@PostMapping("/login")
 	public ApiResponse<?> login(@RequestBody MemberDTO req) throws Exception {
@@ -64,7 +64,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * È¸¿ø Á¤º¸ Á¶È¸
+	 * íšŒì› ì •ë³´ ì¡°íšŒ
 	 */
 	@GetMapping("/member/{id}")
 	public ApiResponse<?> getMember(@PathVariable(required = true) String id) throws Exception {
@@ -72,7 +72,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * È¸¿ø Á¤º¸ º¯°æ
+	 * íšŒì› ì •ë³´ ë³€ê²½
 	 */
 	@PutMapping("/member")
 	public ApiResponse<?> updateMember(MemberDTO req, MultipartFile file) throws Exception {
@@ -80,19 +80,19 @@ public class MemberController {
 	}
 	
 	/**
-	 * ÇÁ·ÎÇÊ ÀÌ¹ÌÁö Ãâ·Â
+	 * í”„ë¡œí•„ ì´ë¯¸ì§€ ì¶œë ¥
 	 */
 	@GetMapping("/member/profile/{mbNo}")
 	public ApiResponse<?> getMemberProfileImg(@PathVariable(required = true) int mbNo) throws Exception {
-		// TODO :: ÇÁ·ÎÇÊ ÀÌ¹ÌÁö Download & byteArray Ãâ·Â ÀÛ¼ºÇÏ°í ÃßÈÄ FileUtil¿¡ °øÅë Class »ı¼º
+		// TODO :: í”„ë¡œí•„ ì´ë¯¸ì§€ Download & byteArray ì¶œë ¥ ì‘ì„±í•˜ê³  ì¶”í›„ FileUtilì— ê³µí†µ Class ìƒì„±
 		MemberAtchEntity res = memberAtchRepository.findByMember_MbNo(mbNo);
 		String fileUrl = res.getFileUrl();
 		String fileName = res.getFileNm();
 		String fileFullUrl = fileUrl + "\\" + fileName;
 		
-		// localÀÏ °æ¿ì url
+		// localì¼ ê²½ìš° url
 		if(System.getProperty("Spring.profiles.active").toString().equals("local")) {
-			fileFullUrl = fileUrl + "/" + fileName;	// TODO ¼­¹ö°æ·Î
+			fileFullUrl = fileUrl + "/" + fileName;	// TODO ì„œë²„ê²½ë¡œ
 		}
 		
 		File profileImg = new File(fileFullUrl);

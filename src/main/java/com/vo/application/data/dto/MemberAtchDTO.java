@@ -13,13 +13,13 @@ import lombok.Setter;
 @Setter
 @Builder
 public class MemberAtchDTO {
-	private int mbAtchNo;	// È¸¿øÃ·ºÎ³»¿ª¹øÈ£
-	private MemberDTO member;	// È¸¿øÅ×ÀÌºí
-	private String actlFileNm;	// ½ÇÁ¦ÆÄÀÏ¸í
-	private String fileNm;	// ÆÄÀÏ¸í
-	private String fileUrl;	// ÆÄÀÏÀ§Ä¡
-	private String registrationDate;	// µî·ÏÀÏÀÚ
-	private String useYn;	// »ç¿ë¿©ºÎ
+	private int mbAtchNo;	// íšŒì›ì²¨ë¶€ë‚´ì—­ë²ˆí˜¸
+	private MemberDTO member;	// íšŒì›í…Œì´ë¸”
+	private String actlFileNm;	// ì‹¤ì œíŒŒì¼ëª…
+	private String fileNm;	// íŒŒì¼ëª…
+	private String fileUrl;	// íŒŒì¼ìœ„ì¹˜
+	private String registrationDate;	// ë“±ë¡ì¼ì
+	private String useYn;	// ì‚¬ìš©ì—¬ë¶€
 	
 	public MemberAtchEntity toEntity() {
 		return MemberAtchEntity.builder()

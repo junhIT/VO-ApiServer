@@ -7,12 +7,12 @@ import com.vo.application.data.dto.PostSaveReqDTO;
 
 public interface PostService {
 	
-	// °Ô½Ã±Û ÀúÀå
+	// ê²Œì‹œê¸€ ì €ì¥
 	PostDTO registerPost(PostSaveReqDTO postDto) throws Exception;
 	
-	// °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+	// ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ
 	List<PostDTO> getPostList();
 
-	// °Ô½Ã±Û »ó¼¼ Á¶È¸
+	// ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒ
 	PostDTO getPost(int postNo);
 }

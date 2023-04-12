@@ -25,18 +25,18 @@ public class MemberEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int mbNo;	// È¸¿ø¹øÈ£
+	private int mbNo;	// íšŒì›ë²ˆí˜¸
 	
 	@Column(unique = true)
-	private String id;	// ¾ÆÀÌµğ
+	private String id;	// ì•„ì´ë””
 	
-	private String password;	// ºñ¹Ğ¹øÈ£
-	private String name;	// ÀÌ¸§
-	private String careerStartDate;	// °æ·Â½ÃÀÛÀÏÀÚ
-	private String mbClsfc;	// È¸¿ø±¸ºĞ
-	private Date registrationDttm;	// µî·ÏÀÏ½Ã
-	private Date withdrawalDttm;	// Å»ÅğÀÏ½Ã
-	private Date frstRegiDttm;	// ÃÖÃÊµî·ÏÀÏ½Ã
-	private Date lastChngDttm;	// ¸¶Áö¸·¼öÁ¤ÀÏ½Ã
+	private String password;	// ë¹„ë°€ë²ˆí˜¸
+	private String name;	// ì´ë¦„
+	private String careerStartDate;	// ê²½ë ¥ì‹œì‘ì¼ì
+	private String mbClsfc;	// íšŒì›êµ¬ë¶„
+	private Date registrationDttm;	// ë“±ë¡ì¼ì‹œ
+	private Date withdrawalDttm;	// íƒˆí‡´ì¼ì‹œ
+	private Date frstRegiDttm;	// ìµœì´ˆë“±ë¡ì¼ì‹œ
+	private Date lastChngDttm;	// ë§ˆì§€ë§‰ìˆ˜ì •ì¼ì‹œ
 	
 }

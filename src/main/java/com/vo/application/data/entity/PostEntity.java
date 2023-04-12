@@ -26,22 +26,22 @@ public class PostEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int postNo;	// °Ô½Ã±Û¹øÈ£
+	private int postNo;	// ê²Œì‹œê¸€ë²ˆí˜¸
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "mbNo")		// È¸¿ø¹øÈ£(±ÛÀÛ¼ºÀÚ)
-	private MemberEntity member;	// È¸¿øÅ×ÀÌºí
+	@JoinColumn(name = "mbNo")		// íšŒì›ë²ˆí˜¸(ê¸€ì‘ì„±ì)
+	private MemberEntity member;	// íšŒì›í…Œì´ë¸”
 	
-	private String title;	// Á¦¸ñ
-	private String content;	// ³»¿ë
-	private String registrationDate;	// µî·ÏÀÏÀÚ
-	private String closingDate;	// ¸¶°¨ÀÏÀÚ
-	private int	price;	//´Ü°¡
-	private String recordingPlace;	// ³ìÀ½Àå¼Ò
-	private String useYn;	// »ç¿ë¿©ºÎ
+	private String title;	// ì œëª©
+	private String content;	// ë‚´ìš©
+	private String registrationDate;	// ë“±ë¡ì¼ì
+	private String closingDate;	// ë§ˆê°ì¼ì
+	private int	price;	//ë‹¨ê°€
+	private String recordingPlace;	// ë…¹ìŒì¥ì†Œ
+	private String useYn;	// ì‚¬ìš©ì—¬ë¶€
 	
 	@Column(columnDefinition = "integer default 0", nullable = false)
-	private int view;	// Á¶È¸¼ö
-	private Date frstRegiDttm;	// ÃÖÃÊµî·ÏÀÏ½Ã
-	private Date lastChngDttm;	// ¸¶Áö¸·¼öÁ¤ÀÏ½Ã
+	private int view;	// ì¡°íšŒìˆ˜
+	private Date frstRegiDttm;	// ìµœì´ˆë“±ë¡ì¼ì‹œ
+	private Date lastChngDttm;	// ë§ˆì§€ë§‰ìˆ˜ì •ì¼ì‹œ
 }

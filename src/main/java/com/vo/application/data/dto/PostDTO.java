@@ -15,17 +15,17 @@ import lombok.ToString;
 @Builder
 public class PostDTO {
 
-	private Integer postNo;	// °Ô½Ã±Û¹øÈ£
-	private Integer memberNo;	// È¸¿ø¹øÈ£
-	private String title;	// Á¦¸ñ
-	private String content;	// ³»¿ë
-	private String registrationDate;	// µî·ÏÀÏÀÚ
-	private String closingDate;	// ¸¶°¨ÀÏÀÚ
-	private Integer	price;	//´Ü°¡
-	private String recordingPlace;	// ³ìÀ½Àå¼Ò
-	private String useYn;	// »ç¿ë¿©ºÎ
-	private int view;	// Á¶È¸¼ö
-	private Date frstRegiDttm;	// ÃÖÃÊµî·ÏÀÏ½Ã
-	private Date lastChngDttm;	// ¸¶Áö¸·¼öÁ¤ÀÏ½Ã
+	private Integer postNo;	// ê²Œì‹œê¸€ë²ˆí˜¸
+	private Integer memberNo;	// íšŒì›ë²ˆí˜¸
+	private String title;	// ì œëª©
+	private String content;	// ë‚´ìš©
+	private String registrationDate;	// ë“±ë¡ì¼ì
+	private String closingDate;	// ë§ˆê°ì¼ì
+	private Integer	price;	//ë‹¨ê°€
+	private String recordingPlace;	// ë…¹ìŒì¥ì†Œ
+	private String useYn;	// ì‚¬ìš©ì—¬ë¶€
+	private int view;	// ì¡°íšŒìˆ˜
+	private Date frstRegiDttm;	// ìµœì´ˆë“±ë¡ì¼ì‹œ
+	private Date lastChngDttm;	// ë§ˆì§€ë§‰ìˆ˜ì •ì¼ì‹œ
 	
 }

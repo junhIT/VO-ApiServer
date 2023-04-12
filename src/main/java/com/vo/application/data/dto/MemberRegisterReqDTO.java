@@ -7,12 +7,12 @@ import lombok.Getter;
 @Getter
 public class MemberRegisterReqDTO {
 
-	private String id;	// ¾ÆÀÌµğ
-	private String password;	// ºñ¹Ğ¹øÈ£
-	private String passwordConfirm;	// ºñ¹Ğ¹øÈ£È®ÀÎ
-	private String name;	// ÀÌ¸§
-	private String careerStartDate;	// °æ·Â½ÃÀÛÀÏÀÚ
-	private String mbClsfc;	// È¸¿ø±¸ºĞ
+	private String id;	// ì•„ì´ë””
+	private String password;	// ë¹„ë°€ë²ˆí˜¸
+	private String passwordConfirm;	// ë¹„ë°€ë²ˆí˜¸í™•ì¸
+	private String name;	// ì´ë¦„
+	private String careerStartDate;	// ê²½ë ¥ì‹œì‘ì¼ì
+	private String mbClsfc;	// íšŒì›êµ¬ë¶„
 	
 	public MemberEntity toEntity() {
 		return MemberEntity.builder()

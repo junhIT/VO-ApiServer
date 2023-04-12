@@ -16,14 +16,14 @@ public class MemberAtchDAOImpl implements MemberAtchDAO {
 	MemberAtchRepository memberAtchRepository;
 
 	/**
-	 * È¸¿øÃ·ºÎ³»¿ª ÀúÀå
+	 * íšŒì›ì²¨ë¶€ë‚´ì—­ ì €ì¥
 	 */
 	@Override
 	public MemberAtchDTO saveMemberAtch(MemberAtchDTO req) {
 		
-		req.setUseYn("Y");	// »ç¿ë¿©ºÎ : Y
-		// TODO : DATEUTIL DATETIMEFORMAT »ı¼º ÇÊ¿ä
-		req.setRegistrationDate("YYYYMMDD");	// µî·ÏÀÏÀÚ
+		req.setUseYn("Y");	// ì‚¬ìš©ì—¬ë¶€ : Y
+		// TODO : DATEUTIL DATETIMEFORMAT ìƒì„± í•„ìš”
+		req.setRegistrationDate("YYYYMMDD");	// ë“±ë¡ì¼ì
 		
 		memberAtchRepository.save(req.toEntity());
 		

@@ -27,17 +27,17 @@ public class MemberAtchEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int mbAtchNo;	// È¸¿øÃ·ºÎ³»¿ª¹øÈ£
+	private int mbAtchNo;	// íšŒì›ì²¨ë¶€ë‚´ì—­ë²ˆí˜¸
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "mbNo")		// È¸¿ø¹øÈ£(±ÛÀÛ¼ºÀÚ)
-	private MemberEntity member;	// È¸¿øÅ×ÀÌºí
+	@JoinColumn(name = "mbNo")		// íšŒì›ë²ˆí˜¸(ê¸€ì‘ì„±ì)
+	private MemberEntity member;	// íšŒì›í…Œì´ë¸”
 	
-	private String actlFileNm;	// ½ÇÁ¦ÆÄÀÏ¸í
-	private String fileNm;	// ÆÄÀÏ¸í
-	private String fileUrl;	// ÆÄÀÏÀ§Ä¡
-	private String registrationDate;	// µî·ÏÀÏÀÚ
-	private String useYn;	// »ç¿ë¿©ºÎ
-	private Date frstRegiDttm;	// ÃÖÃÊµî·ÏÀÏ½Ã
-	private Date lastChngDttm;	// ¸¶Áö¸·¼öÁ¤ÀÏ½Ã
+	private String actlFileNm;	// ì‹¤ì œíŒŒì¼ëª…
+	private String fileNm;	// íŒŒì¼ëª…
+	private String fileUrl;	// íŒŒì¼ìœ„ì¹˜
+	private String registrationDate;	// ë“±ë¡ì¼ì
+	private String useYn;	// ì‚¬ìš©ì—¬ë¶€
+	private Date frstRegiDttm;	// ìµœì´ˆë“±ë¡ì¼ì‹œ
+	private Date lastChngDttm;	// ë§ˆì§€ë§‰ìˆ˜ì •ì¼ì‹œ
 }
