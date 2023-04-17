@@ -32,8 +32,6 @@ public class MemberController {
 	@Autowired
 	private MemberAtchRepository memberAtchRepository;
 	
-    @Autowired
-    private Environment environment;
 	
 	/**
 	 * 회원가입
