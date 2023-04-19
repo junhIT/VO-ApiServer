@@ -20,17 +20,17 @@ public class ApiResponse<T> {
 	private T data;
 	private String message;
 
-	// Api ¼º°ø Response
+	// Api ì •ìƒ Response
 	public static <T> ApiResponse<T> success(T data) {
 		return new ApiResponse<>(SUCCESS_STATUS, SUCCESS_CODE, data, null);
 	}
 	
-	// Api ¿À·ù Response
+	// Api ì˜¤ë¥˜ Response
 	public static <T> ApiResponse<T> fail(String message) {
 		return new ApiResponse<>(FAIL_STATUS, FAIL_CODE, null, message);
 	}
 	
-	// Api ¿¡·¯ Response
+	// Api ì‹¤íŒ¨ Response
 	public static <T> ApiResponse<T> error(String message) {
 		return new ApiResponse<>(ERROR_STATUS, ERROR_CODE, null, message);
 	}

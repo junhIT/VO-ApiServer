@@ -180,7 +180,7 @@ public class MemberServiceImpl implements MemberService{
 			
 			// 서버에 저장된 파일 정보 DB에 저장
 			MemberAtchDTO memberAtchReq = MemberAtchDTO.builder()
-														.member(MemberDTO.builder().mbNo(updateMemberRes.getMbNo()).build())
+														.member(MemberDTO.builder().mbNo(memberRes.getMbNo()).build())
 														.actlFileNm(originalFileName)
 														.fileNm(fileName)
 														.fileUrl(filePath)
