@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.vo.application.data.dto.PostDTO;
 import com.vo.application.data.dto.PostSaveReqDTO;
+import com.vo.application.data.entity.MemberEntity;
 import com.vo.application.data.entity.PostEntity;
 import com.vo.application.data.reprository.PostRepository;
 import com.vo.application.service.PostService;

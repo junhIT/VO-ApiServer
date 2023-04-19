@@ -37,7 +37,7 @@ public class PostSaveReqDTO {
 	public PostEntity toEntity() {
 		return PostEntity.builder()
 					.postNo(postNo)
-					.member(MemberEntity.builder().mbNo(memberDTO.getMbNo()).build())
+					.member(MemberEntity.builder().mbNo(mbNo).build())
 					.title(title)
 					.content(content)
 					.registrationDate(registrationDate)
