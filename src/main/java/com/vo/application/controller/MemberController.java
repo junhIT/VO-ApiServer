@@ -87,7 +87,7 @@ public class MemberController {
 		
 		// 프로필 이미지가 없을 경우 정상처리
 		if(res == null) {
-			return ApiResponse.success(null);
+			return ApiResponse.success("");
 		}
 		
 		String fileUrl = res.getFileUrl();
