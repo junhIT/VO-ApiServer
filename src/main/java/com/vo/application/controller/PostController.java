@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vo.application.common.dto.ApiResponse;
+import com.vo.application.data.dto.PostDTO;
 import com.vo.application.data.dto.PostSaveReqDTO;
 import com.vo.application.service.PostService;
 
@@ -36,6 +38,7 @@ public class PostController {
 		
 		return ApiResponse.success(postService.getPostList());
 	}
+	
 	/**
 	 * 게시글 상세 조회
 	 */
@@ -45,5 +48,12 @@ public class PostController {
 		return ApiResponse.success(postService.getPost(postNo));
 	}
 	
-	
+	/**
+	 * 게시글 파일 업로드
+	 */
+	@PostMapping("/post/upload")
+	public ApiResponse<?> uploadFile(MultipartFile file) throws Exception {
+		
+		return ApiResponse.success(postService.uploadFile(file));
+	}
 }

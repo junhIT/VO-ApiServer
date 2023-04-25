@@ -2,6 +2,8 @@ package com.vo.application.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.vo.application.data.dto.PostDTO;
 import com.vo.application.data.dto.PostSaveReqDTO;
 
@@ -15,4 +17,7 @@ public interface PostService {
 
 	// 게시글 상세 조회
 	PostDTO getPost(int postNo);
+
+	// 파일 업로드
+	String uploadFile(MultipartFile file);
 }
