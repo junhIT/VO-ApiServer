@@ -10,7 +10,7 @@ import com.vo.application.data.dto.PostSaveReqDTO;
 public interface PostService {
 	
 	// 게시글 저장
-	PostDTO registerPost(PostSaveReqDTO postDto) throws Exception;
+	PostDTO registerPost(PostSaveReqDTO postDto, List<MultipartFile> scripts, List<MultipartFile> images) throws Exception;
 	
 	// 게시글 목록 조회
 	List<PostDTO> getPostList();
@@ -18,6 +18,4 @@ public interface PostService {
 	// 게시글 상세 조회
 	PostDTO getPost(int postNo);
 
-	// 파일 업로드
-	String uploadFile(MultipartFile file);
 }

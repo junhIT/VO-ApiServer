@@ -2,7 +2,6 @@ package com.vo.application.data.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,33 +17,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "POST_TB")
+@Table(name = "POST_ATCH_TB")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class PostEntity {
-
+public class PostAtchEntity {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int postNo;	// 게시글번호
+	private int postAtchNo;	// 게시글첨부내역번호
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "mbNo")		// 회원번호(글작성자)
-	private MemberEntity member;	// 회원테이블
+	@JoinColumn(name = "postNo")		// 게시글번호
+	private PostEntity post;	// 게시글테이블
 	
-	private String title;	// 제목
-	private String content;	// 내용
+	private String actlFileNm;	// 실제파일명
+	private String fileDivision;	// 파일구분
+	private String fileUrl;	// 파일위치
 	private String registrationDate;	// 등록일자
-	private String closingDate;	// 마감일자
-	private int	price;	//단가
-	private String recordingPlace;	// 녹음장소
-	private String recordingType;	// 녹음타입
+	private String atchIdx;	// 첨부순번
 	private String useYn;	// 사용여부
-	
-	@Column(columnDefinition = "integer default 0", nullable = false)
-	private int view;	// 조회수
 	private Date frstRegiDttm;	// 최초등록일시
 	private Date lastChngDttm;	// 마지막수정일시
 }

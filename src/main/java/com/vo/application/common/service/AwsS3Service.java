@@ -2,7 +2,8 @@ package com.vo.application.common.service;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,14 +27,24 @@ public class AwsS3Service {
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucketName;
 	
-	public String uploadFile(String category, MultipartFile file) {
+	public String uploadFile(String category, MultipartFile file) throws Exception {
 		
 		log.debug("AWS S3 UploadFile START ==================================================");
 		
-		UUID uuid = UUID.randomUUID();	// UUID
-		String originalFileName = file.getOriginalFilename();	// 실제파일명
-		String fileName = category + uuid + "_" + originalFileName;	// 서버에 저장되는 파일명
+		/* 현재 시간 가져오는 YYYYMMDDhhmmss */
+		Date nowDate = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		
+		
+		String currentDateTime = simpleDateFormat.format(nowDate);
+		String originalFileName = file.getOriginalFilename();	// 실제파일명
+		String[] originalFileNameArr = originalFileName.split(".");
+		
+		if( originalFileNameArr.length > 2 ) throw new Exception("오류다");
+		
+//		String fileName = category + originalFileNameArr[0] + "_" +currentDateTime + "." + originalFileNameArr[1];
+		String fileName = category + "_" + currentDateTime + originalFileName;
+
 		log.debug("AWS S3 UploadFile fileName : {} ==================================================", fileName);
 
 		ObjectMetadata objectMetadata = new ObjectMetadata();

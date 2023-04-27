@@ -26,7 +26,7 @@ public class PostSaveReqDTO {
 	private String closingDate;	// 마감일자
 	private int	price;	//단가
 	private String recordingPlace;	// 녹음장소
-	private String useYn;	// 사용여부
+	private String recordingType;	// 녹음타입
 	private String view;	// 조회수
 	private Date frstRegiDttm;	// 최초등록일시
 	private Date lastChngDttm;	// 마지막수정일시
@@ -44,7 +44,8 @@ public class PostSaveReqDTO {
 					.closingDate(closingDate)
 					.price(price)
 					.recordingPlace(recordingPlace)
-					.useYn(useYn)
+					.recordingType(recordingType)
+					.useYn("Y")
 					.build();
 	}
 }
