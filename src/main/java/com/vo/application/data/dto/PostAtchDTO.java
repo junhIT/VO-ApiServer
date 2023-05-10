@@ -2,6 +2,7 @@ package com.vo.application.data.dto;
 
 import java.util.Date;
 
+import com.vo.application.common.util.DateUtil;
 import com.vo.application.data.entity.MemberAtchEntity;
 import com.vo.application.data.entity.MemberEntity;
 import com.vo.application.data.entity.PostAtchEntity;
@@ -35,7 +36,7 @@ public class PostAtchDTO {
 								.fileDivision(fileDivision)
 								.fileUrl(fileUrl)
 								.atchIdx(atchIdx)
-								.registrationDate(registrationDate)
+								.registrationDate(DateUtil.parseDate(registrationDate, DateUtil.DATE_FORMAT_yyyyMMdd))
 								.useYn("Y")
 								.build();
 	}

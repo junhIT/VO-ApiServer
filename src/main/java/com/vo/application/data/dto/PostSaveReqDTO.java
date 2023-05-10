@@ -2,6 +2,7 @@ package com.vo.application.data.dto;
 
 import java.util.Date;
 
+import com.vo.application.common.util.DateUtil;
 import com.vo.application.data.entity.MemberEntity;
 import com.vo.application.data.entity.PostEntity;
 
@@ -40,8 +41,8 @@ public class PostSaveReqDTO {
 					.member(MemberEntity.builder().mbNo(mbNo).build())
 					.title(title)
 					.content(content)
-					.registrationDate(registrationDate)
-					.closingDate(closingDate)
+					.registrationDate(DateUtil.parseDate(registrationDate, DateUtil.DATE_FORMAT_yyyyMMdd))
+					.closingDate(DateUtil.parseDate(closingDate, DateUtil.DATE_FORMAT_yyyyMMdd))
 					.price(price)
 					.recordingPlace(recordingPlace)
 					.recordingType(recordingType)

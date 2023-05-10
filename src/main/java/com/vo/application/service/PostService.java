@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vo.application.data.dto.GetListPostReqDTO;
 import com.vo.application.data.dto.PostDTO;
 import com.vo.application.data.dto.PostSaveReqDTO;
 
@@ -13,7 +14,7 @@ public interface PostService {
 	PostDTO registerPost(PostSaveReqDTO postDto, List<MultipartFile> scripts, List<MultipartFile> images) throws Exception;
 	
 	// 게시글 목록 조회
-	List<PostDTO> getPostList();
+	List<PostDTO> getPostList(GetListPostReqDTO req);
 
 	// 게시글 상세 조회
 	PostDTO getPost(int postNo);

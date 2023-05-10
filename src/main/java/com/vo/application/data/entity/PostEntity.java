@@ -1,5 +1,6 @@
 package com.vo.application.data.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -36,8 +37,8 @@ public class PostEntity {
 	
 	private String title;	// 제목
 	private String content;	// 내용
-	private String registrationDate;	// 등록일자
-	private String closingDate;	// 마감일자
+	private LocalDate registrationDate;	// 등록일자
+	private LocalDate closingDate;	// 마감일자
 	private int	price;	//단가
 	private String recordingPlace;	// 녹음장소
 	private String recordingType;	// 녹음타입

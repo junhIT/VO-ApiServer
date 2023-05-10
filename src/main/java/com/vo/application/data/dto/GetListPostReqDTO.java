@@ -17,7 +17,11 @@ import lombok.ToString;
 @Builder
 @Getter
 @Setter
-public class PostDTO {
+public class GetListPostReqDTO {
+	
+	private String startDate;	// 시작일자
+	private String endDate;	// 종료일자
+	
 
 	private Integer postNo;	// 게시글번호
 	private Integer memberNo;	// 회원번호

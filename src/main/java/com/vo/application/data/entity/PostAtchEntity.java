@@ -1,5 +1,6 @@
 package com.vo.application.data.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -36,7 +37,7 @@ public class PostAtchEntity {
 	private String actlFileNm;	// 실제파일명
 	private String fileDivision;	// 파일구분
 	private String fileUrl;	// 파일위치
-	private String registrationDate;	// 등록일자
+	private LocalDate registrationDate;	// 등록일자
 	private String atchIdx;	// 첨부순번
 	private String useYn;	// 사용여부
 	private Date frstRegiDttm;	// 최초등록일시
