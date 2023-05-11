@@ -17,7 +17,7 @@ import lombok.ToString;
 @Builder
 @Getter
 @Setter
-public class GetListPostReqDTO {
+public class GetListPostReqDTO extends CommonDTO{
 	
 	private String startDate;	// 시작일자
 	private String endDate;	// 종료일자

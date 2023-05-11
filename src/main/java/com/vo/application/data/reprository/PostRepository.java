@@ -3,12 +3,12 @@ package com.vo.application.data.reprository;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.vo.application.data.dto.PostDTO;
 import com.vo.application.data.entity.PostEntity;
 
 import jakarta.transaction.Transactional;
@@ -32,6 +32,7 @@ public interface PostRepository extends JpaRepository<PostEntity, Integer>{
 			+ "AND (:startDate is null OR date(p.registrationDate) >= :startDate) "
 			+ "AND (:endDate is null OR date(p.registrationDate) <= :endDate)")
 	List<PostEntity> findPostListByPostDto(
+			Pageable pageable,
 			@Param("startDate")LocalDate startDate,
 			@Param("endDate")LocalDate endDate);
 }

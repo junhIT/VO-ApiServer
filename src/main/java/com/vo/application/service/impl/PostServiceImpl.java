@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vo.application.common.dto.AwsS3Constant;
 import com.vo.application.common.service.AwsS3Service;
 import com.vo.application.common.util.DateUtil;
+import com.vo.application.common.util.PageableUtil;
 import com.vo.application.data.dto.GetListPostReqDTO;
 import com.vo.application.data.dto.PostAtchDTO;
 import com.vo.application.data.dto.PostDTO;
@@ -136,8 +138,10 @@ public class PostServiceImpl implements PostService {
 			endDate = DateUtil.parseDate(req.getEndDate(), DateUtil.DATE_FORMAT_yyyyMMdd);
 		}
 		
+		Pageable pageable = PageableUtil.createPageRequest(req.getPage(), req.getPageSize());
+		
 		// 게시글 목록 조회
-		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(startDate, endDate);
+		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(pageable, startDate, endDate);
 
 		// Entity List to DTO List
 		List<PostDTO> postDtoRes = postEntityRes.stream()
