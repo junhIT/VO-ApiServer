@@ -46,6 +46,9 @@ public class PostEntity {
 	
 	@Column(columnDefinition = "integer default 0", nullable = false)
 	private int view;	// 조회수
+	
+	private Integer selectMbNo;	// 채택회원번호
+
 	private Date frstRegiDttm;	// 최초등록일시
 	private Date lastChngDttm;	// 마지막수정일시
 }

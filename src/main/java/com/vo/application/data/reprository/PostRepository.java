@@ -2,6 +2,7 @@ package com.vo.application.data.reprository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,13 +27,20 @@ public interface PostRepository extends JpaRepository<PostEntity, Integer>{
 	 * @param endDate			조회종료일자
 	 * @return List<PostEntity>
 	 */
-	@Query("SELECT  p "
+	@Query("SELECT p "
 			+ "FROM PostEntity p "
 			+ "WHERE p.useYn='Y' "
-			+ "AND (:startDate is null OR date(p.registrationDate) >= :startDate) "
-			+ "AND (:endDate is null OR date(p.registrationDate) <= :endDate)")
+			+ "AND (:mbNo is null OR p.member.mbNo = :mbNo)"
+			+ "AND date(p.registrationDate) >= :startDate "
+			+ "AND date(p.registrationDate) <= :endDate ")
+//			+ "AND (:startDate is null OR date(p.registrationDate) >= :startDate) "
+//			+ "AND (:endDate is null OR date(p.registrationDate) <= :endDate) ")
+//			+ "AND (:selectMbNo is null OR p.selectMbNo = :selectMbNo)")
 	List<PostEntity> findPostListByPostDto(
-			Pageable pageable,
+			@Param("mbNo")Integer mbNo,
 			@Param("startDate")LocalDate startDate,
-			@Param("endDate")LocalDate endDate);
+			@Param("endDate")LocalDate endDate
+//			Pageable pageable
+//			@Param("selectMbNo")Integer selectMbNo
+			);
 }

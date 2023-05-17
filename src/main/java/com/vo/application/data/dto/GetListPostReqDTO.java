@@ -24,7 +24,7 @@ public class GetListPostReqDTO extends CommonDTO{
 	
 
 	private Integer postNo;	// 게시글번호
-	private Integer memberNo;	// 회원번호
+	private String mbNo;	// 회원번호
 	private String title;	// 제목
 	private String content;	// 내용
 	private String registrationDate;	// 등록일자
@@ -34,6 +34,7 @@ public class GetListPostReqDTO extends CommonDTO{
 	private String recordingType;	// 녹음타입
 	private String useYn;	// 사용여부
 	private int view;	// 조회수
+	private String selectMbNo;	// 채택회원번호 
 	private Date frstRegiDttm;	// 최초등록일시
 	private Date lastChngDttm;	// 마지막수정일시
 	

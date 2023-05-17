@@ -20,7 +20,7 @@ import lombok.ToString;
 public class PostDTO {
 
 	private Integer postNo;	// 게시글번호
-	private Integer memberNo;	// 회원번호
+	private Integer mbNo;	// 회원번호
 	private String title;	// 제목
 	private String content;	// 내용
 	private String registrationDate;	// 등록일자

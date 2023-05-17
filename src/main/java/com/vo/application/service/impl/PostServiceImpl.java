@@ -129,6 +129,8 @@ public class PostServiceImpl implements PostService {
 
 		LocalDate startDate = null;	// 조회시작일자
 		LocalDate endDate = null;	// 조회종료일자
+		Integer mbNo = null;	// 게시글등록회원번호
+		Integer selectMbNo = null;	// 채택회원번호
 		
 		if( req.getStartDate() != null ) {
 			startDate = DateUtil.parseDate(req.getStartDate(), DateUtil.DATE_FORMAT_yyyyMMdd);
@@ -138,14 +140,24 @@ public class PostServiceImpl implements PostService {
 			endDate = DateUtil.parseDate(req.getEndDate(), DateUtil.DATE_FORMAT_yyyyMMdd);
 		}
 		
+		if( req.getMbNo() != null ) {
+			mbNo = Integer.parseInt(req.getMbNo());
+		}
+		
+		if( req.getSelectMbNo() != null ) {
+			selectMbNo = Integer.parseInt(req.getSelectMbNo());
+		}
+		
 		Pageable pageable = PageableUtil.createPageRequest(req.getPage(), req.getPageSize());
 		
 		// 게시글 목록 조회
-		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(pageable, startDate, endDate);
+//		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(pageable, startDate, endDate, mbNo, selectMbNo);
+		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(mbNo, startDate, endDate);
+//		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(mbNo, startDate, endDate, pageable);
 
 		// Entity List to DTO List
 		List<PostDTO> postDtoRes = postEntityRes.stream()
-				.map(m -> PostDTO.builder().postNo(m.getPostNo()).memberNo(m.getMember().getMbNo()).title(m.getTitle())
+				.map(m -> PostDTO.builder().postNo(m.getPostNo()).mbNo(m.getMember().getMbNo()).title(m.getTitle())
 						.content(m.getContent())
 						.registrationDate(DateUtil.formatDate(m.getRegistrationDate(), DateUtil.DATE_FORMAT_yyyyMMdd))
 						.closingDate(DateUtil.formatDate(m.getClosingDate(), DateUtil.DATE_FORMAT_yyyyMMdd))
@@ -166,7 +178,7 @@ public class PostServiceImpl implements PostService {
 
 		postRepository.updateView(postNo);
 
-		return PostDTO.builder().postNo(postEntityRes.getPostNo()).memberNo(postEntityRes.getMember().getMbNo())
+		return PostDTO.builder().postNo(postEntityRes.getPostNo()).mbNo(postEntityRes.getMember().getMbNo())
 				.title(postEntityRes.getTitle()).content(postEntityRes.getContent())
 				.registrationDate(
 						DateUtil.formatDate(postEntityRes.getRegistrationDate(), DateUtil.DATE_FORMAT_yyyyMMdd))
