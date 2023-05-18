@@ -14,7 +14,7 @@ public interface PostService {
 	PostDTO registerPost(PostSaveReqDTO postDto, List<MultipartFile> scripts, List<MultipartFile> images) throws Exception;
 	
 	// 게시글 목록 조회
-	List<PostDTO> getPostList(GetListPostReqDTO req);
+	List<PostDTO> getPostList(Integer mbNo, String startDate, String endDate, Integer selectMbNo);
 
 	// 게시글 상세 조회
 	PostDTO getPost(int postNo);

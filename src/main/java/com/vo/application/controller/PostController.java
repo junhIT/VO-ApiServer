@@ -41,9 +41,13 @@ public class PostController {
 	 * 게시글 목록 조회
 	 */
 	@GetMapping("/post")
-	public ApiResponse<?> getListPost(@RequestBody  GetListPostReqDTO req) {
+	public ApiResponse<?> getListPost(@RequestParam(value="mbNo", required=false) Integer mbNo
+									, @RequestParam(value="startDate", required=false) String startDate
+									, @RequestParam(value="endDate", required=false) String endDate
+									, @RequestParam(value="selectMbNo", required=false) Integer selectMbNo
+										) {
 		
-		return ApiResponse.success(postService.getPostList(req));
+		return ApiResponse.success(postService.getPostList(mbNo, startDate, endDate, selectMbNo));
 	}
 	
 	/**

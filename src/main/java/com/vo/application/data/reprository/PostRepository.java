@@ -31,15 +31,16 @@ public interface PostRepository extends JpaRepository<PostEntity, Integer>{
 			+ "FROM PostEntity p "
 			+ "WHERE p.useYn='Y' "
 			+ "AND (:mbNo is null OR p.member.mbNo = :mbNo)"
-			+ "AND date(p.registrationDate) >= :startDate "
-			+ "AND date(p.registrationDate) <= :endDate ")
+			+ "AND (:startDate is null OR date(p.registrationDate) >= :startDate) "
+			+ "AND (:endDate is null OR date(p.registrationDate) <= :endDate) "
+			+ "AND (:selectMbNo is null OR p.selectMbNo = :selectMbNo)")
 //			+ "AND (:startDate is null OR date(p.registrationDate) >= :startDate) "
 //			+ "AND (:endDate is null OR date(p.registrationDate) <= :endDate) ")
-//			+ "AND (:selectMbNo is null OR p.selectMbNo = :selectMbNo)")
 	List<PostEntity> findPostListByPostDto(
 			@Param("mbNo")Integer mbNo,
 			@Param("startDate")LocalDate startDate,
-			@Param("endDate")LocalDate endDate
+			@Param("endDate")LocalDate endDate,
+			@Param("selectMbNo")Integer selectMbNo
 //			Pageable pageable
 //			@Param("selectMbNo")Integer selectMbNo
 			);

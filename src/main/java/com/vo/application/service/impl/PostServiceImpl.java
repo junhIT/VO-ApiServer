@@ -125,34 +125,24 @@ public class PostServiceImpl implements PostService {
 	 * 게시글 목록 조회
 	 */
 	@Override
-	public List<PostDTO> getPostList(GetListPostReqDTO req) {
-
-		LocalDate startDate = null;	// 조회시작일자
-		LocalDate endDate = null;	// 조회종료일자
-		Integer mbNo = null;	// 게시글등록회원번호
-		Integer selectMbNo = null;	// 채택회원번호
+	public List<PostDTO> getPostList(Integer mbNo, String strStartDate, String strEndDate, Integer selectMbNo) {
 		
-		if( req.getStartDate() != null ) {
-			startDate = DateUtil.parseDate(req.getStartDate(), DateUtil.DATE_FORMAT_yyyyMMdd);
+		LocalDate StartDate = null;
+		LocalDate EndDate = null;
+		
+		if( strStartDate != null ) {
+			StartDate = DateUtil.parseDate(strStartDate, DateUtil.DATE_FORMAT_yyyyMMdd);
 		}
 		
-		if( req.getEndDate() != null ) {
-			endDate = DateUtil.parseDate(req.getEndDate(), DateUtil.DATE_FORMAT_yyyyMMdd);
+		if( strEndDate != null ) {
+			EndDate = DateUtil.parseDate(strEndDate, DateUtil.DATE_FORMAT_yyyyMMdd);
 		}
 		
-		if( req.getMbNo() != null ) {
-			mbNo = Integer.parseInt(req.getMbNo());
-		}
-		
-		if( req.getSelectMbNo() != null ) {
-			selectMbNo = Integer.parseInt(req.getSelectMbNo());
-		}
-		
-		Pageable pageable = PageableUtil.createPageRequest(req.getPage(), req.getPageSize());
+//		Pageable pageable = PageableUtil.createPageRequest(req.getPage(), req.getPageSize());
 		
 		// 게시글 목록 조회
 //		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(pageable, startDate, endDate, mbNo, selectMbNo);
-		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(mbNo, startDate, endDate);
+		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(mbNo, StartDate, EndDate, selectMbNo);
 //		List<PostEntity> postEntityRes = postRepository.findPostListByPostDto(mbNo, startDate, endDate, pageable);
 
 		// Entity List to DTO List
