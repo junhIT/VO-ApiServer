@@ -31,4 +31,12 @@ public class DateUtil {
 	 public static String formatDate(LocalDate date, DateTimeFormatter dtf) {
 		 return dtf.format(date);
 	 }
+	 
+//	 public static String getCurrentDate_yyyyMMdd() {
+//		 return formatDate(LocalDate.now(), DateUtil.DATE_FORMAT_yyyyMMdd);
+//	 }
+//	 
+//	 public static LocalDate getCurrentDate_yyyy_MM_dd() {
+//		return parseDate(getCurrentDate_yyyyMMdd(), DateUtil.DATE_FORMAT_yyyyMMdd);
+//	 }
 }

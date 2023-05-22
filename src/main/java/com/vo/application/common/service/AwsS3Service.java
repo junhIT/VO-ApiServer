@@ -35,7 +35,6 @@ public class AwsS3Service {
 		Date nowDate = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		
-		
 		String currentDateTime = simpleDateFormat.format(nowDate);
 		String originalFileName = file.getOriginalFilename();	// 실제파일명
 		String[] originalFileNameArr = originalFileName.split(".");
