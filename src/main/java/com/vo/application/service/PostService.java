@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vo.application.data.dto.GetListPostReqDTO;
 import com.vo.application.data.dto.PostDTO;
+import com.vo.application.data.dto.PostGetDetailResDTO;
 import com.vo.application.data.dto.PostSaveReqDTO;
 
 public interface PostService {
@@ -17,6 +18,6 @@ public interface PostService {
 	List<PostDTO> getPostList(Integer mbNo, String startDate, String endDate, Integer selectMbNo);
 
 	// 게시글 상세 조회
-	PostDTO getPost(int postNo);
+	PostGetDetailResDTO getPost(int postNo);
 
 }

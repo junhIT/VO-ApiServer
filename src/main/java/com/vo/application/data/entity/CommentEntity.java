@@ -2,8 +2,8 @@ package com.vo.application.data.entity;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,9 +36,12 @@ public class CommentEntity {
 	@JoinColumn(name = "mbNo")		// 회원번호(댓글작성자)
 	private MemberEntity member;	// 회원테이블
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "postNo")		// 게시글번호
 	private PostEntity post;	//  게시글
+	
+	@OneToMany(mappedBy = "comment", fetch = FetchType.LAZY)
+	private List<CommentAtchEntity> commentAtchList;
 	
 	private LocalDate registrationDate;	// 등록일자
 	private String content;	// 내용
